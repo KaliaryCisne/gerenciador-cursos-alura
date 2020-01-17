@@ -7,7 +7,7 @@ namespace Alura\Cursos\Controller;
 use Alura\Cursos\Entity\Curso;
 use Alura\Cursos\Infra\EntityManagerCreator;
 
-class listarCursos implements InterfaceControladorRequisicao
+class listarCursos implements InterfaceControllerRequest
 {
     private $repositorioDeCursos;
     public function __construct()
