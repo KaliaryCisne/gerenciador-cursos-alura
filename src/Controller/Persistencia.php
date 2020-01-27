@@ -21,7 +21,7 @@ class Persistencia implements InterfaceControllerRequest
             ->getEntityManager();
     }
 
-    public function processaRequisicao(): void
+    public function processRequest(): void
     {
         //validates the data received
         $descricao = filter_input(
@@ -37,6 +37,6 @@ class Persistencia implements InterfaceControllerRequest
         $this->entityManager->persist($curso);
         $this->entityManager->flush();
 
-        header('Location: /listar-cursos', false, 302);
+        header('Location: /list-courses', false, 302);
     }
 }

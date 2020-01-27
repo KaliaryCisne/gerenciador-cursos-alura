@@ -6,5 +6,5 @@ namespace Alura\Cursos\Controller;
 
 interface InterfaceControllerRequest
 {
-    public function processaRequisicao(): void;
+    public function processRequest(): void;
 }
