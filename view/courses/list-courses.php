@@ -1,4 +1,6 @@
-<?php include __DIR__ . '/../inicio-html.php'; ?>
+<?php include __DIR__ . '/../inicio-html.php';
+/** @var array $cursos  **/
+?>
 
     <a href="/novo-curso" class="btn btn-primary mb-2">Novo curso</a>
 
@@ -6,7 +8,10 @@
         <?php foreach ($cursos as $curso): ?>
             <li class="list-group-item d-flex justify-content-between">
                 <?= $curso->getDescricao(); ?>
-                <a href="/excluir-curso?id=<?= $curso->getId(); ?>" class="btn btn-outline-danger btn-sm">Excluir</a>
+                <span>
+                 <a href="/alterar-curso?id=<?=$curso->getId(); ?>" class="btn btn-outline-info btn-sm">Update</a>
+                <a href="/excluir-curso?id=<?= $curso->getId(); ?>" class="btn btn-outline-danger btn-sm">Delete</a>
+                </span>
             </li>
         <?php endforeach; ?>
     </ul>
