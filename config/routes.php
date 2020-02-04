@@ -1,11 +1,6 @@
 <?php
 
-use Alura\Cursos\Controller\Exclusion;
-use Alura\Cursos\Controller\FormularioInsercao;
-use Alura\Cursos\Controller\IndexController;
-use Alura\Cursos\Controller\listCourses;
-use Alura\Cursos\Controller\Persistencia;
-use Alura\Cursos\Controller\Update;
+use Alura\Cursos\Controller\{Exclusion, FormularioInsercao, IndexController, listCourses, Persistencia, Update};
 
 return [
     '/' => IndexController::class,
