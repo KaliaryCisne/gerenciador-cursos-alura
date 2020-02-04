@@ -9,6 +9,6 @@ class FormularioInsercao implements InterfaceControllerRequest
     public function processRequest(): void
     {
         $titulo = "Novo curso";
-        require __DIR__ . '/../../view/courses/formulario.php';
+        require __DIR__ . '/../../view/courses/form.php';
     }
 }

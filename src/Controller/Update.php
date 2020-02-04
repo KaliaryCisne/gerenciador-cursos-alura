@@ -36,6 +36,6 @@ class Update implements InterfaceControllerRequest
 
         $curso = $this->repositoryCursos->find($id);
         $titulo = "Formulário de Edição {$curso->getDescricao()}";
-        require __DIR__ . '/../../view/courses/formulario.php';
+        require __DIR__ . '/../../view/courses/form.php';
     }
 }
