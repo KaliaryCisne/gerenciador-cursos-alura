@@ -6,7 +6,6 @@ namespace Alura\Cursos\Controller;
 
 use Alura\Cursos\Entity\Curso;
 use Alura\Cursos\Infra\EntityManagerCreator;
-use const http\Client\Curl\Versions\CURL;
 
 class Update implements InterfaceControllerRequest
 {
