@@ -7,7 +7,7 @@ namespace Alura\Cursos\Controller;
 use Alura\Cursos\Entity\Curso;
 use Alura\Cursos\Infra\EntityManagerCreator;
 
-class Update implements InterfaceControllerRequest
+class UpdateController extends RenderViewController implements InterfaceControllerRequest
 {
 
     /**
@@ -35,7 +35,10 @@ class Update implements InterfaceControllerRequest
         }
 
         $curso = $this->repositoryCursos->find($id);
-        $titulo = "Formulário de Edição {$curso->getDescricao()}";
-        require __DIR__ . '/../../view/courses/form.php';
+        echo $this->render('courses/form.php', [
+            'course' => $curso,
+            'title' => "Editing form {$curso->getDescricao()}",
+        ]);
+
     }
 }

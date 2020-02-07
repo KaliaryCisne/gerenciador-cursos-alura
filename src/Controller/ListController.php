@@ -7,7 +7,7 @@ namespace Alura\Cursos\Controller;
 use Alura\Cursos\Entity\Curso;
 use Alura\Cursos\Infra\EntityManagerCreator;
 
-class listCourses implements InterfaceControllerRequest
+class ListController extends RenderViewController implements InterfaceControllerRequest
 {
     private $repositorioDeCursos;
     public function __construct()
@@ -20,8 +20,10 @@ class listCourses implements InterfaceControllerRequest
 
     public function processRequest(): void
     {
-        $cursos = $this->repositorioDeCursos->findAll();
-        $titulo = "List of courses";
-        require __DIR__ . '/../../view/courses/list-courses.php';
+        $courses = $this->repositorioDeCursos->findAll();
+        echo $this->render("courses/list-courses.php", [
+            'title' => "List of courses",
+            'courses' => $courses,
+        ]);
     }
 }

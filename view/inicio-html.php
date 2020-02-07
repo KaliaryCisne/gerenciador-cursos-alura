@@ -1,3 +1,6 @@
+<?php
+/* @var string $title */
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -8,5 +11,5 @@
 <body>
 <div class="container">
     <div class="jumbotron">
-        <h1><?= $titulo; ?></h1>
+        <h1><?= $title; ?></h1>
     </div>

@@ -1,14 +1,14 @@
 <?php
 
-use Alura\Cursos\Controller\{Exclusion, FormularioInsercao, IndexController, listCourses, Persistencia, Update};
+use Alura\Cursos\Controller\{DeleteController, InsertController, IndexController, ListController, PersistenceController, UpdateController};
 
 return [
     '/' => IndexController::class,
     '/index' => IndexController::class,
-    '/list-courses' => listCourses::class,
-    '/novo-curso' => FormularioInsercao::class,
-    '/salvar-curso' => Persistencia::class,
-    '/excluir-curso' => Exclusion::class,
-    '/alterar-curso' => Update::class,
+    '/list-courses' => ListController::class,
+    '/novo-curso' => InsertController::class,
+    '/salvar-curso' => PersistenceController::class,
+    '/excluir-curso' => DeleteController::class,
+    '/alterar-curso' => UpdateController::class,
 ];
 

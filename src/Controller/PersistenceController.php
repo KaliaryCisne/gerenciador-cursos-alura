@@ -7,7 +7,7 @@ namespace Alura\Cursos\Controller;
 use Alura\Cursos\Entity\Curso;
 use Alura\Cursos\Infra\EntityManagerCreator;
 
-class Persistencia implements InterfaceControllerRequest
+class PersistenceController extends RenderViewController implements InterfaceControllerRequest
 {
 
     /**

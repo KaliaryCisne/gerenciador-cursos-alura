@@ -1,18 +1,17 @@
 <?php include __DIR__ . '/../inicio-html.php';
-/** @var string $cursos  **/
-/** @var string $curso  **/
+/** @var string $course  **/
 ?>
 
-    <form action="/salvar-curso<?= isset($curso) ? '?id=' . $curso->getId() : ''; ?>" method="post">
+    <form action="/salvar-curso<?= isset($course) ? '?id=' . $course->getId() : ''; ?>" method="post">
         <div class="form-group">
-            <label for="descricao">Descricao</label>
+            <label for="descricao">Description</label>
             <input type="text"
                    id="descricao"
                    name="descricao"
                    class="form-control"
-                   value="<?= isset($curso) ? $curso->getDescricao() : '' ;?>">
+                   value="<?= isset($course) ? $course->getDescricao() : '' ;?>">
         </div>
-        <button class="btn btn-primary">Salvar</button>
+        <button class="btn btn-primary">Save</button>
     </form>
 
 <?php include __DIR__ . '/../fim-html.php'; ?>

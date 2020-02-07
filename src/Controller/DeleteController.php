@@ -7,7 +7,7 @@ namespace Alura\Cursos\Controller;
 use Alura\Cursos\Entity\Curso;
 use Alura\Cursos\Infra\EntityManagerCreator;
 
-class Exclusion implements InterfaceControllerRequest
+class DeleteController implements InterfaceControllerRequest
 {
     private $repository;
     private $entityManager;
