@@ -12,7 +12,12 @@ Sugestões de melhoria são bem vindas.
 Instale as dependências do projeto
 
 ```bash
-composer install
+composer install --no-dev
+```
+
+## Gerar tabelas do Banco de Dados
+```
+vendor/doctrine/orm/bin/doctrine.php orm:schema-tool:update --force
 ```
 
 ## Usage
