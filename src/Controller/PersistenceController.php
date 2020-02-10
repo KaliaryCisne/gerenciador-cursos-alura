@@ -7,6 +7,11 @@ namespace Alura\Cursos\Controller;
 use Alura\Cursos\Entity\Curso;
 use Alura\Cursos\Infra\EntityManagerCreator;
 
+/**
+ * Persiste um registro no banco
+ * Class PersistenceController
+ * @package Alura\Cursos\Controller
+ */
 class PersistenceController extends RenderViewController implements InterfaceControllerRequest
 {
 
@@ -40,6 +45,7 @@ class PersistenceController extends RenderViewController implements InterfaceCon
             FILTER_VALIDATE_INT
         );
 
+        //Edita ou insere um curso
         if(!is_null($id) && $id !== false) {
             $curso->setId($id);
             $this->entityManager->merge($curso);

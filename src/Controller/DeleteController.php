@@ -7,6 +7,11 @@ namespace Alura\Cursos\Controller;
 use Alura\Cursos\Entity\Curso;
 use Alura\Cursos\Infra\EntityManagerCreator;
 
+/**
+ * Deleta um curso
+ * Class DeleteController
+ * @package Alura\Cursos\Controller
+ */
 class DeleteController implements InterfaceControllerRequest
 {
     private $repository;

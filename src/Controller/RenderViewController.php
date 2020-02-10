@@ -3,7 +3,11 @@
 
 namespace Alura\Cursos\Controller;
 
-
+/**
+ * Retorna o html da view que será exibida
+ * Class RenderViewController
+ * @package Alura\Cursos\Controller
+ */
 abstract class RenderViewController
 {
     /**

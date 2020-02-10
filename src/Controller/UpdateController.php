@@ -7,6 +7,11 @@ namespace Alura\Cursos\Controller;
 use Alura\Cursos\Entity\Curso;
 use Alura\Cursos\Infra\EntityManagerCreator;
 
+/**
+ * Renderiza a view de editar
+ * Class UpdateController
+ * @package Alura\Cursos\Controller
+ */
 class UpdateController extends RenderViewController implements InterfaceControllerRequest
 {
 

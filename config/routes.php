@@ -1,6 +1,13 @@
 <?php
 
-use Alura\Cursos\Controller\{DeleteController, InsertController, IndexController, ListController, PersistenceController, UpdateController};
+use Alura\Cursos\Controller\{AuthenticationControler,
+    DeleteController,
+    InsertController,
+    IndexController,
+    ListController,
+    LoginController,
+    PersistenceController,
+    UpdateController};
 
 return [
     '/' => IndexController::class,
@@ -10,5 +17,7 @@ return [
     '/salvar-curso' => PersistenceController::class,
     '/excluir-curso' => DeleteController::class,
     '/alterar-curso' => UpdateController::class,
+    '/login' => AuthenticationControler::class,
+    '/logar' => LoginController::class,
 ];
 

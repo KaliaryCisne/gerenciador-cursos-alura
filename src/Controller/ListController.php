@@ -7,6 +7,11 @@ namespace Alura\Cursos\Controller;
 use Alura\Cursos\Entity\Curso;
 use Alura\Cursos\Infra\EntityManagerCreator;
 
+/**
+ * Renderiza a view que lista todos os cursos
+ * Class ListController
+ * @package Alura\Cursos\Controller
+ */
 class ListController extends RenderViewController implements InterfaceControllerRequest
 {
     private $repositorioDeCursos;
