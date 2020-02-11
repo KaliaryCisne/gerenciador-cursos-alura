@@ -54,6 +54,8 @@ class LoginController implements InterfaceControllerRequest
             return;
         }
 
+        $_SESSION['logado'] = true;
+
         header('Location: /list-courses');
 
     }
