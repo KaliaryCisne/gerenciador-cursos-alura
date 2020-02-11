@@ -19,6 +19,11 @@ if (!array_key_exists($resource, $routes)) {
 
 session_start();
 
+if(!isset($_SESSION['logado']) && $resource !== '/login' && $resource !== '/logar') {
+    header('Location: /login');
+    exit();
+}
+
 $classController = $routes[$resource];
 /** @var InterfaceControllerRequest $controller*/
 $controller = (new $classController())->processRequest();
