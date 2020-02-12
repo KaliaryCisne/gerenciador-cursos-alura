@@ -6,7 +6,10 @@ ini_set("display_errors", true);
 
 use Alura\Cursos\Controller\InterfaceControllerRequest;
 
-$resource = $_SERVER['REDIRECT_URL'];
+$request_uri = $_SERVER['REQUEST_URI'];
+$resource = explode("?", $request_uri)[0];
+
+//$resource = $_SERVER['REDIRECT_URL'];
 //$resource = $_SERVER['PATH_INFO'];
 
 $server_name = $_SERVER['SERVER_NAME'];
