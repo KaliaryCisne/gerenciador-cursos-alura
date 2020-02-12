@@ -6,6 +6,7 @@ use Alura\Cursos\Controller\{AuthenticationControler,
     IndexController,
     ListController,
     LoginController,
+    LogoutController,
     PersistenceController,
     UpdateController};
 
@@ -19,5 +20,6 @@ return [
     '/alterar-curso' => UpdateController::class,
     '/login' => AuthenticationControler::class,
     '/logar' => LoginController::class,
+    '/logout' => LogoutController::class,
 ];
 

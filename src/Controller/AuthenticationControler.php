@@ -4,7 +4,7 @@
 namespace Alura\Cursos\Controller;
 
 /**
- * Gerencia os acessos a aplicação
+ * Gerencia os acessos a aplicação e renderiza a view de login
  * Class AuthenticationControler
  * @package Alura\Cursos\Controller
  */
