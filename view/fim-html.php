@@ -1,5 +1,5 @@
 <footer>
-    <div class="jumbotron bg-info text-white">
+    <div id="footer" class="jumbotron bg-info text-white">
         <p class="copyright">&copy Copyright LearnEasy - 2019</p>
     </div>
 </footer>

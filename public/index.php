@@ -2,7 +2,7 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-ini_set("display_errors", true);
+ini_set("display_errors", false);
 
 use Alura\Cursos\Controller\InterfaceControllerRequest;
 
@@ -30,3 +30,4 @@ if(!isset($_SESSION['logado']) && $resource !== '/login' && $resource !== '/loga
 $classController = $routes[$resource];
 /** @var InterfaceControllerRequest $controller*/
 $controller = (new $classController())->processRequest();
+

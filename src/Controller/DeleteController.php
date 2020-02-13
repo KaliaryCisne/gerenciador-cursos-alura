@@ -32,6 +32,8 @@ class DeleteController implements InterfaceControllerRequest
         );
 
         if (is_null($id) || $id === false) {
+            $_SESSION['message'] = 'Curso inexistente';
+            $_SESSION['type_message'] = "danger";
             header('Location: /list-courses');
             return;
         }
@@ -40,6 +42,8 @@ class DeleteController implements InterfaceControllerRequest
         $curso = $this->cursoRepository->find($id);
         $this->entityManager->remove($curso);
         $this->entityManager->flush();
+        $_SESSION['message'] = 'Curso excluído com sucesso!';
+        $_SESSION['type_message'] = "danger";
         header('Location: list-courses');
     }
 }

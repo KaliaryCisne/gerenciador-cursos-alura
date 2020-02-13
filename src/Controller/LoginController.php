@@ -35,7 +35,9 @@ class LoginController implements InterfaceControllerRequest
         );
 
         if (is_null($email) || $email === false) {
-            echo "o e-mail digitado não é um e-mail válido!";
+            $_SESSION['type_message'] = 'danger';
+            $_SESSION['message'] = "E-mail digitado não é um e-mail válido!";
+            header('Location: /login');
             return;
         }
 
@@ -50,7 +52,9 @@ class LoginController implements InterfaceControllerRequest
         ->findOneBy(['email' => $email]);
 
         if(is_null($usuario) || !$usuario->verifyPassword($password)) {
-            echo "E-mail ou senha inválidos!";
+            $_SESSION['type_message'] = 'danger';
+            $_SESSION['message'] = "E-mail ou senha inválidos!";
+            header('Location: /login');
             return;
         }
 

@@ -45,3 +45,5 @@ R
 	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 K
 public/static/css/style.css,1/f/1fd8fe3641c46422a0db8b9891aa08f45f657e5e
+S
+#src/Controller/LogoutController.php,d/7/d75fd1eb26dc87c0a96d98177a1908c6621bc429

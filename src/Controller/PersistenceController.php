@@ -49,9 +49,12 @@ class PersistenceController extends RenderViewController implements InterfaceCon
         if(!is_null($id) && $id !== false) {
             $curso->setId($id);
             $this->entityManager->merge($curso);
+            $_SESSION['message'] = 'Curso atualizado com sucesso!';
         } else {
             $this->entityManager->persist($curso);
+            $_SESSION['message'] = 'Curso inserido com sucesso!';
         }
+        $_SESSION['type_message'] = "success";
         $this->entityManager->flush();
 
 

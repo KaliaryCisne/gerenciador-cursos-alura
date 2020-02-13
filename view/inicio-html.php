@@ -1,5 +1,7 @@
 <?php
 /* @var string $title */
+/* @var string $typeMessage */
+/* @var string $message */
 //$baseDir = dirname(dirname(__FILE__));
 $baseDir = dirname(__DIR__);
 ?>
@@ -24,8 +26,18 @@ $baseDir = dirname(__DIR__);
     <?php endif; ?>
 </nav>
 
-
 <div class="container">
+
     <div class="jumbotron bg-info text-white">
         <h1><?= $title; ?></h1>
     </div>
+
+    <?php if (isset($_SESSION['message'])) : ?>
+        <div class="alert alert-<?= $_SESSION['type_message']; ?>">
+            <?= $_SESSION['message']; ?>
+        </div>
+    <?php
+        unset($_SESSION['message']);
+        unset($_SESSION['type_message']);
+    endif;
+    ?>
