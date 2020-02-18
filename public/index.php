@@ -2,7 +2,7 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-ini_set("display_errors", false);
+ini_set("display_errors", true);
 
 use Alura\Cursos\Controller\InterfaceControllerRequest;
 
