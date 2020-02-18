@@ -1,14 +1,14 @@
 <?php
 
 
-namespace Alura\Cursos\Controller;
+namespace Alura\Cursos\Helper;
 
 /**
  * Retorna o html da view que será exibida
- * Class RenderViewController
- * @package Alura\Cursos\Controller
+ * Trait RenderViewTrait
+ * @package Alura\Cursos\Helper
  */
-abstract class RenderViewController
+trait RenderViewTrait
 {
     /**
      * @param string $pathView

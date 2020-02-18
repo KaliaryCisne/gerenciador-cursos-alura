@@ -9,7 +9,7 @@ class IndexController implements InterfaceControllerRequest
 
     public function processRequest(): void
     {
-        $titulo = "Cursos Alura";
+        $title = "Learn Easy";
         require __DIR__ . '/../../view/courses/home.php';
     }
 }

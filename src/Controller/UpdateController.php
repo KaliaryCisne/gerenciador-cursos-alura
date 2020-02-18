@@ -5,6 +5,7 @@ namespace Alura\Cursos\Controller;
 
 
 use Alura\Cursos\Entity\Curso;
+use Alura\Cursos\Helper\RenderViewTrait;
 use Alura\Cursos\Infra\EntityManagerCreator;
 
 /**
@@ -12,9 +13,10 @@ use Alura\Cursos\Infra\EntityManagerCreator;
  * Class UpdateController
  * @package Alura\Cursos\Controller
  */
-class UpdateController extends RenderViewController implements InterfaceControllerRequest
+class UpdateController implements InterfaceControllerRequest
 {
 
+    use RenderViewTrait;
     /**
      * @var \Doctrine\Common\Persistence\ObjectRepository
      */

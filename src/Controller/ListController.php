@@ -5,6 +5,7 @@ namespace Alura\Cursos\Controller;
 
 
 use Alura\Cursos\Entity\Curso;
+use Alura\Cursos\Helper\RenderViewTrait;
 use Alura\Cursos\Infra\EntityManagerCreator;
 
 /**
@@ -12,8 +13,9 @@ use Alura\Cursos\Infra\EntityManagerCreator;
  * Class ListController
  * @package Alura\Cursos\Controller
  */
-class ListController extends RenderViewController implements InterfaceControllerRequest
+class ListController implements InterfaceControllerRequest
 {
+    use RenderViewTrait;
     private $repositorioDeCursos;
     public function __construct()
     {

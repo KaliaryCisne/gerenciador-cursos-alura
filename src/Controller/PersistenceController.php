@@ -4,17 +4,17 @@
 namespace Alura\Cursos\Controller;
 
 
-use Alura\Cursos\Entity\Curso;
-use Alura\Cursos\Infra\EntityManagerCreator;
+use Alura\Cursos\{Entity\Curso, Helper\FlashMessageTrait, Helper\RenderViewTrait, Infra\EntityManagerCreator};
 
 /**
  * Persiste um registro no banco
  * Class PersistenceController
  * @package Alura\Cursos\Controller
  */
-class PersistenceController extends RenderViewController implements InterfaceControllerRequest
+class PersistenceController implements InterfaceControllerRequest
 {
 
+    use FlashMessageTrait, RenderViewTrait;
     /**
      * @var \Doctrine\ORM\EntityManagerInterface
      */
@@ -49,12 +49,12 @@ class PersistenceController extends RenderViewController implements InterfaceCon
         if(!is_null($id) && $id !== false) {
             $curso->setId($id);
             $this->entityManager->merge($curso);
-            $_SESSION['message'] = 'Curso atualizado com sucesso!';
+            $message = "Curso atualizado com sucesso!";
         } else {
             $this->entityManager->persist($curso);
-            $_SESSION['message'] = 'Curso inserido com sucesso!';
+            $message = "Curso inserido com sucesso!";
         }
-        $_SESSION['type_message'] = "success";
+        $this->setMessage("success", $message);
         $this->entityManager->flush();
 
 

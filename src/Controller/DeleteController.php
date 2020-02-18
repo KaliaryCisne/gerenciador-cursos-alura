@@ -5,6 +5,7 @@ namespace Alura\Cursos\Controller;
 
 
 use Alura\Cursos\Entity\Curso;
+use Alura\Cursos\Helper\FlashMessageTrait;
 use Alura\Cursos\Infra\EntityManagerCreator;
 
 /**
@@ -14,7 +15,10 @@ use Alura\Cursos\Infra\EntityManagerCreator;
  */
 class DeleteController implements InterfaceControllerRequest
 {
-    private $repository;
+    use FlashMessageTrait;
+    /**
+     * @var \Doctrine\ORM\EntityManagerInterface
+     */
     private $entityManager;
 
     public function __construct()
@@ -32,8 +36,7 @@ class DeleteController implements InterfaceControllerRequest
         );
 
         if (is_null($id) || $id === false) {
-            $_SESSION['message'] = 'Curso inexistente';
-            $_SESSION['type_message'] = "danger";
+            $this->setMessage("danger", "Curso inexistente");
             header('Location: /list-courses');
             return;
         }
@@ -42,8 +45,7 @@ class DeleteController implements InterfaceControllerRequest
         $curso = $this->cursoRepository->find($id);
         $this->entityManager->remove($curso);
         $this->entityManager->flush();
-        $_SESSION['message'] = 'Curso excluído com sucesso!';
-        $_SESSION['type_message'] = "danger";
+        $this->setMessage("success", "Curso excluído com sucesso!");
         header('Location: list-courses');
     }
 }
