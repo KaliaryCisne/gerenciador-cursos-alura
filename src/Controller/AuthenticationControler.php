@@ -7,17 +7,18 @@ use Alura\Cursos\Helper\RenderViewTrait;
 use Nyholm\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 
 /**
  * Gerencia os acessos a aplicação e renderiza a view de login
  * Class AuthenticationControler
  * @package Alura\Cursos\Controller
  */
-class AuthenticationControler implements InterfaceControllerRequest
+class AuthenticationControler implements RequestHandlerInterface
 {
 
     use RenderViewTrait;
-    public function processRequest(ServerRequestInterface $request): ResponseInterface
+    public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $html =  $this->render('auth/login.php', [
             'title' => 'Log Into Course Manager',

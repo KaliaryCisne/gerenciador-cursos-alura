@@ -10,13 +10,14 @@ use Alura\Cursos\Infra\EntityManagerCreator;
 use Nyholm\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 
 /**
  * Renderiza a view de editar
  * Class UpdateController
  * @package Alura\Cursos\Controller
  */
-class UpdateController implements InterfaceControllerRequest
+class UpdateController implements RequestHandlerInterface
 {
 
     use RenderViewTrait;
@@ -31,7 +32,7 @@ class UpdateController implements InterfaceControllerRequest
         $this->repositoryCursos = $entityManager->getRepository(Curso::class);
     }
 
-    public function processRequest(ServerRequestInterface $request): ResponseInterface
+    public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $id = filter_input(
           INPUT_GET,

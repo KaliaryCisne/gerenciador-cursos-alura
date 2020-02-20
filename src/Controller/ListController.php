@@ -10,13 +10,14 @@ use Alura\Cursos\Infra\EntityManagerCreator;
 use Nyholm\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 
 /**
  * Renderiza a view que lista todos os cursos
  * Class ListController
  * @package Alura\Cursos\Controller
  */
-class ListController implements InterfaceControllerRequest
+class ListController implements RequestHandlerInterface
 {
     use RenderViewTrait;
     private $repositorioDeCursos;
@@ -28,7 +29,7 @@ class ListController implements InterfaceControllerRequest
             ->getRepository(Curso::class);
     }
 
-    public function processRequest(ServerRequestInterface $request): ResponseInterface
+    public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $courses = $this->repositorioDeCursos->findAll();
         $html =  $this->render("courses/list-courses.php", [

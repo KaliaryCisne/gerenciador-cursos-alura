@@ -9,13 +9,14 @@ use Alura\Cursos\Infra\EntityManagerCreator;
 use Nyholm\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 
 /**
  * Realizar o login caso o usuário tenha permissão para entrar no sistema
  * Class LoginController
  * @package Alura\Cursos\Controller
  */
-class LoginController implements InterfaceControllerRequest
+class LoginController implements RequestHandlerInterface
 {
 
     use FlashMessageTrait;
@@ -30,7 +31,7 @@ class LoginController implements InterfaceControllerRequest
         $this->userRepository = $entityManager->getRepository(Usuario::class);
     }
 
-    public function processRequest(ServerRequestInterface $request): ResponseInterface
+    public function handle(ServerRequestInterface $request): ResponseInterface
     {
 
         $email = filter_input(

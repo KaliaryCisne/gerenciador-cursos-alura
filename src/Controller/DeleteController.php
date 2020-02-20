@@ -10,13 +10,14 @@ use Alura\Cursos\Infra\EntityManagerCreator;
 use Nyholm\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 
 /**
  * Deleta um curso
  * Class DeleteController
  * @package Alura\Cursos\Controller
  */
-class DeleteController implements InterfaceControllerRequest
+class DeleteController implements RequestHandlerInterface
 {
     use FlashMessageTrait;
     /**
@@ -30,7 +31,7 @@ class DeleteController implements InterfaceControllerRequest
         $this->cursoRepository = $this->entityManager->getRepository(Curso::class);
     }
 
-    public function processRequest(ServerRequestInterface $request): ResponseInterface
+    public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $id = filter_input(
             INPUT_GET,

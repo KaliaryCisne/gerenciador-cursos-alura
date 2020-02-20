@@ -8,13 +8,14 @@ use Alura\Cursos\{Entity\Curso, Helper\FlashMessageTrait, Helper\RenderViewTrait
 use Nyholm\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 
 /**
  * Persiste um registro no banco
  * Class PersistenceController
  * @package Alura\Cursos\Controller
  */
-class PersistenceController implements InterfaceControllerRequest
+class PersistenceController implements RequestHandlerInterface
 {
 
     use FlashMessageTrait, RenderViewTrait;
@@ -29,7 +30,7 @@ class PersistenceController implements InterfaceControllerRequest
             ->getEntityManager();
     }
 
-    public function processRequest(ServerRequestInterface $request): ResponseInterface
+    public function handle(ServerRequestInterface $request): ResponseInterface
     {
         //validates the data received
         $descricao = filter_input(

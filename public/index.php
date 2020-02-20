@@ -4,7 +4,7 @@ require __DIR__ . '/../vendor/autoload.php';
 
 ini_set("display_errors", true);
 
-use Alura\Cursos\Controller\InterfaceControllerRequest;
+use Psr\Http\Server\RequestHandlerInterface;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7Server\ServerRequestCreator;
 
@@ -37,9 +37,9 @@ $creator = new ServerRequestCreator(
 $request = $creator->fromGlobals();
 
 $classController = $routes[$resource];
-/** @var InterfaceControllerRequest $controller*/
+/** @var RequestHandlerInterface $controller*/
 $controller = new $classController();
-$response = $controller->processRequest($request);
+$response = $controller->handle($request);
 
 foreach ($response->getHeaders() as $name => $values) {
     foreach ($values as $value) {
