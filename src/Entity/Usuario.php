@@ -1,5 +1,5 @@
 <?php
-namespace Alura\Cursos\Entity;
+namespace LF\Courses\Entity;
 /**
  * @Entity
  * @Table(name="usuarios")

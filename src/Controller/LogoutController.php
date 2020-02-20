@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Alura\Cursos\Controller;
+namespace LF\Courses\Controller;
 
 
 use Nyholm\Psr7\Response;

@@ -1,12 +1,12 @@
 <?php
 
 
-namespace Alura\Cursos\Helper;
+namespace LF\Courses\Helper;
 
 /**
  * Retorna o html da view que será exibida
  * Trait RenderViewTrait
- * @package Alura\Cursos\Helper
+ * @package LF\Courses\Helper
  */
 trait RenderViewTrait
 {

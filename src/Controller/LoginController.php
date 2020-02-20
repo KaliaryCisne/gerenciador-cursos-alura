@@ -1,11 +1,10 @@
 <?php
 
 
-namespace Alura\Cursos\Controller;
+namespace LF\Courses\Controller;
 
-use Alura\Cursos\Entity\Usuario;
-use Alura\Cursos\Helper\FlashMessageTrait;
-use Alura\Cursos\Infra\EntityManagerCreator;
+use Doctrine\ORM\EntityManagerInterface;
+use LF\Courses\{Entity\Usuario, Helper\FlashMessageTrait, Infra\EntityManagerCreator};
 use Nyholm\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -14,7 +13,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 /**
  * Realizar o login caso o usuário tenha permissão para entrar no sistema
  * Class LoginController
- * @package Alura\Cursos\Controller
+ * @package LF\Courses\Controller
  */
 class LoginController implements RequestHandlerInterface
 {
@@ -25,18 +24,15 @@ class LoginController implements RequestHandlerInterface
      */
     private $userRepository;
 
-    public function __construct()
+    public function __construct(EntityManagerInterface $entityManager)
     {
-        $entityManager = (new EntityManagerCreator())->getEntityManager();
         $this->userRepository = $entityManager->getRepository(Usuario::class);
     }
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-
-        $email = filter_input(
-            INPUT_POST,
-            'email',
+        $email = filter_var(
+            $request->getParsedBody()['email'],
             FILTER_VALIDATE_EMAIL
         );
 
@@ -53,17 +49,17 @@ class LoginController implements RequestHandlerInterface
         );
 
         /** @var Usuario $usuario */
-        $usuario = $this->userRepository
+        $user = $this->userRepository
         ->findOneBy(['email' => $email]);
 
-        if(is_null($usuario) || !$usuario->verifyPassword($password)) {
+        if(is_null($user) || !$user->verifyPassword($password)) {
             $this->setMessage("danger", "E-mail ou senha inválidos!");
             return $redirectLogin;
         }
 
         $_SESSION['logado'] = true;
         header('Location: /list-courses');
-        return new \Nyholm\Psr7\Response(302, ['Location' => '/list-courses']);
+        return new Response(302, ['Location' => '/list-courses']);
 
     }
 }

@@ -4,6 +4,7 @@ require __DIR__ . '/../vendor/autoload.php';
 
 ini_set("display_errors", true);
 
+use Psr\Container\ContainerInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7Server\ServerRequestCreator;
@@ -37,10 +38,13 @@ $creator = new ServerRequestCreator(
 $request = $creator->fromGlobals();
 
 $classController = $routes[$resource];
-/** @var RequestHandlerInterface $controller*/
-$controller = new $classController();
-$response = $controller->handle($request);
 
+/** @var ContainerInterface $container */
+$container = require __DIR__ . '/../config/dependencies.php';
+/** @var RequestHandlerInterface $controller*/
+$controller = $container->get($classController);
+
+$response = $controller->handle($request);
 foreach ($response->getHeaders() as $name => $values) {
     foreach ($values as $value) {
         header(sprintf('%s: %s', $name, $value), false);

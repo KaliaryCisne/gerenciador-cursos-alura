@@ -1,6 +1,6 @@
 <?php
 
-namespace Alura\Cursos\Infra;
+namespace LF\Courses\Infra;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;

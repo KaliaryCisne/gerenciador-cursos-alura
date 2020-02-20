@@ -1,10 +1,10 @@
 <?php
 
 
-namespace Alura\Cursos\Controller;
+namespace LF\Courses\Controller;
 
 
-use Alura\Cursos\Helper\RenderViewTrait;
+use LF\Courses\Helper\RenderViewTrait;
 use Nyholm\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -17,7 +17,7 @@ class IndexController implements RequestHandlerInterface
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $html = $this->render('courses/home.php', [
-            'title' => 'Learn Easy',
+            'title' => 'Learning Fast',
         ]);
 
         return new Response(302, [], $html);

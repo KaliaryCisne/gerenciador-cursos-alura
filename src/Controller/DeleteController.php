@@ -1,12 +1,12 @@
 <?php
 
 
-namespace Alura\Cursos\Controller;
+namespace LF\Courses\Controller;
 
 
-use Alura\Cursos\Entity\Curso;
-use Alura\Cursos\Helper\FlashMessageTrait;
-use Alura\Cursos\Infra\EntityManagerCreator;
+use Doctrine\ORM\EntityManagerInterface;
+use LF\Courses\Entity\Curso;
+use LF\Courses\Helper\FlashMessageTrait;
 use Nyholm\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -15,7 +15,8 @@ use Psr\Http\Server\RequestHandlerInterface;
 /**
  * Deleta um curso
  * Class DeleteController
- * @package Alura\Cursos\Controller
+ * @property \Doctrine\Common\Persistence\ObjectRepository $cursoRepository
+ * @package LF\Courses\Controller
  */
 class DeleteController implements RequestHandlerInterface
 {
@@ -24,18 +25,19 @@ class DeleteController implements RequestHandlerInterface
      * @var \Doctrine\ORM\EntityManagerInterface
      */
     private $entityManager;
+    private $cursoRepository;
 
-    public function __construct()
+    public function __construct(EntityManagerInterface $entityManager)
     {
-        $this->entityManager = (new EntityManagerCreator())->getEntityManager();
-        $this->cursoRepository = $this->entityManager->getRepository(Curso::class);
+        $this->entityManager = $entityManager;
+        $this->cursoRepository = $entityManager
+            ->getRepository(Curso::class);
     }
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $id = filter_input(
-            INPUT_GET,
-            'id',
+        $id = filter_var(
+            $request->getQueryParams()['id'],
             FILTER_VALIDATE_INT
         );
 
@@ -46,6 +48,8 @@ class DeleteController implements RequestHandlerInterface
         }
 
         $curso = $this->cursoRepository->find($id);
+//        var_dump($curso);
+//        die();
         $this->entityManager->remove($curso);
         $this->entityManager->flush();
         $this->setMessage("success", "Curso excluído com sucesso!");

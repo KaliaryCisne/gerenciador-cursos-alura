@@ -1,6 +1,6 @@
-# LearnEasy
+# LearningFast
 
-LearnEasy é uma plataforma de cursos online.
+LearningFast é uma plataforma de cursos online.
 
 A idéia desse projeto é aprender como implementar as boas práticas de desenvolvimento de código.
 

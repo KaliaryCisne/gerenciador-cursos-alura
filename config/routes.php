@@ -1,6 +1,6 @@
 <?php
 
-use Alura\Cursos\Controller\{AuthenticationControler,
+use LF\Courses\Controller\{AuthenticationControler,
     DeleteController,
     InsertController,
     IndexController,

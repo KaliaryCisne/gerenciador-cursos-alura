@@ -1,30 +1,30 @@
 <?php
 
 
-namespace Alura\Cursos\Controller;
+namespace LF\Courses\Controller;
 
 
-use Alura\Cursos\Entity\Curso;
-use Alura\Cursos\Helper\RenderViewTrait;
-use Alura\Cursos\Infra\EntityManagerCreator;
+use Doctrine\ORM\EntityManagerInterface;
+use LF\Courses\{Entity\Curso, Helper\RenderViewTrait};
 use Nyholm\Psr7\Response;
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface;
-use Psr\Http\Server\RequestHandlerInterface;
+use Psr\Http\{Message\ResponseInterface, Message\ServerRequestInterface, Server\RequestHandlerInterface};
 
 /**
  * Renderiza a view que lista todos os cursos
  * Class ListController
- * @package Alura\Cursos\Controller
+ * @package LF\Courses\Controller
  */
 class ListController implements RequestHandlerInterface
 {
     use RenderViewTrait;
     private $repositorioDeCursos;
-    public function __construct()
+
+    /**
+     * ListController constructor.
+     * @param EntityManagerInterface $entityManager
+     */
+    public function __construct(EntityManagerInterface $entityManager)
     {
-        $entityManager = (new EntityManagerCreator())
-            ->getEntityManager();
         $this->repositorioDeCursos = $entityManager
             ->getRepository(Curso::class);
     }

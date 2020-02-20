@@ -1,10 +1,11 @@
 <?php
 
 
-namespace Alura\Cursos\Controller;
+namespace LF\Courses\Controller;
 
 
-use Alura\Cursos\{Entity\Curso, Helper\FlashMessageTrait, Helper\RenderViewTrait, Infra\EntityManagerCreator};
+use Doctrine\ORM\EntityManagerInterface;
+use LF\Courses\{Entity\Curso, Helper\FlashMessageTrait, Helper\RenderViewTrait, Infra\EntityManagerCreator};
 use Nyholm\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -13,29 +14,28 @@ use Psr\Http\Server\RequestHandlerInterface;
 /**
  * Persiste um registro no banco
  * Class PersistenceController
- * @package Alura\Cursos\Controller
+ * @package LF\Courses\Controller
  */
 class PersistenceController implements RequestHandlerInterface
 {
 
     use FlashMessageTrait, RenderViewTrait;
+
     /**
      * @var \Doctrine\ORM\EntityManagerInterface
      */
     private $entityManager;
 
-    public function __construct()
+    public function __construct(EntityManagerInterface $entityManager)
     {
-        $this->entityManager = (new EntityManagerCreator())
-            ->getEntityManager();
+        $this->entityManager = $entityManager;
     }
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         //validates the data received
-        $descricao = filter_input(
-            INPUT_POST,
-            'descricao',
+        $descricao = filter_var(
+            $request->getParsedBody()['descricao'],
             FILTER_SANITIZE_STRING
         );
 
@@ -43,9 +43,8 @@ class PersistenceController implements RequestHandlerInterface
         $curso = new Curso();
         $curso->setDescricao($descricao);
 
-        $id = filter_input(
-            INPUT_GET,
-            'id',
+        $id = filter_var(
+            $request->getQueryParams()['id'],
             FILTER_VALIDATE_INT
         );
 

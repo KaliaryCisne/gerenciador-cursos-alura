@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Alura\Cursos\Helper;
+namespace LF\Courses\Helper;
 
 
 trait FlashMessageTrait

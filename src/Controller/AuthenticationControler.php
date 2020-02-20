@@ -1,9 +1,9 @@
 <?php
 
 
-namespace Alura\Cursos\Controller;
+namespace LF\Courses\Controller;
 
-use Alura\Cursos\Helper\RenderViewTrait;
+use LF\Courses\Helper\RenderViewTrait;
 use Nyholm\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -12,7 +12,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 /**
  * Gerencia os acessos a aplicação e renderiza a view de login
  * Class AuthenticationControler
- * @package Alura\Cursos\Controller
+ * @package LF\Courses\Controller
  */
 class AuthenticationControler implements RequestHandlerInterface
 {

@@ -1,6 +1,6 @@
 <?php
 
-use Alura\Cursos\Infra\EntityManagerCreator;
+use LF\Courses\Infra\EntityManagerCreator;
 use Doctrine\ORM\Tools\Console\ConsoleRunner;
 
 require_once __DIR__ . '/vendor/autoload.php';
