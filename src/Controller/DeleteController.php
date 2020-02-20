@@ -7,6 +7,9 @@ namespace Alura\Cursos\Controller;
 use Alura\Cursos\Entity\Curso;
 use Alura\Cursos\Helper\FlashMessageTrait;
 use Alura\Cursos\Infra\EntityManagerCreator;
+use Nyholm\Psr7\Response;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 
 /**
  * Deleta um curso
@@ -27,7 +30,7 @@ class DeleteController implements InterfaceControllerRequest
         $this->cursoRepository = $this->entityManager->getRepository(Curso::class);
     }
 
-    public function processRequest(): void
+    public function processRequest(ServerRequestInterface $request): ResponseInterface
     {
         $id = filter_input(
             INPUT_GET,
@@ -35,17 +38,16 @@ class DeleteController implements InterfaceControllerRequest
             FILTER_VALIDATE_INT
         );
 
+        $response = new Response(302, ['Location' => '/list-courses']);
         if (is_null($id) || $id === false) {
             $this->setMessage("danger", "Curso inexistente");
-            header('Location: /list-courses');
-            return;
+            return $response;
         }
 
-        //        $curso = $this->entityManager->getReference(Curso::class, $id);
         $curso = $this->cursoRepository->find($id);
         $this->entityManager->remove($curso);
         $this->entityManager->flush();
         $this->setMessage("success", "Curso excluído com sucesso!");
-        header('Location: list-courses');
+        return $response;
     }
 }

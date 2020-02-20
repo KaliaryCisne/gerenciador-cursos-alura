@@ -7,6 +7,9 @@ namespace Alura\Cursos\Controller;
 use Alura\Cursos\Entity\Curso;
 use Alura\Cursos\Helper\RenderViewTrait;
 use Alura\Cursos\Infra\EntityManagerCreator;
+use Nyholm\Psr7\Response;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 
 /**
  * Renderiza a view que lista todos os cursos
@@ -25,12 +28,14 @@ class ListController implements InterfaceControllerRequest
             ->getRepository(Curso::class);
     }
 
-    public function processRequest(): void
+    public function processRequest(ServerRequestInterface $request): ResponseInterface
     {
         $courses = $this->repositorioDeCursos->findAll();
-        echo $this->render("courses/list-courses.php", [
+        $html =  $this->render("courses/list-courses.php", [
             'title' => "List of courses",
             'courses' => $courses,
         ]);
+
+        return new Response(200, [], $html);
     }
 }

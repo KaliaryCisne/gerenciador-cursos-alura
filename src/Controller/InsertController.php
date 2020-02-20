@@ -4,6 +4,9 @@
 namespace Alura\Cursos\Controller;
 
 use Alura\Cursos\Helper\RenderViewTrait;
+use Nyholm\Psr7\Response;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 
 /**
  * Chama a view para inserir um novo curso
@@ -13,10 +16,12 @@ use Alura\Cursos\Helper\RenderViewTrait;
 class InsertController implements InterfaceControllerRequest
 {
     use RenderViewTrait;
-    public function processRequest(): void
+    public function processRequest(ServerRequestInterface $request): ResponseInterface
     {
-        echo $this->render("courses/form.php", [
+        $html =  $this->render("courses/form.php", [
             'title' => "New course",
         ]);
+
+        return new Response(200, [], $html);
     }
 }

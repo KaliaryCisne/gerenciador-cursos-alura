@@ -23,8 +23,6 @@ Q
 !src/Controller/ListController.php,d/8/d8c614f30ca7fdc999afc3370780d8b5119acf0b
 X
 (src/Controller/PersistenceController.php,2/5/25ae9359e39d0925984d2cf7155402d08b83b877
-W
-'src/Controller/RenderViewController.php,4/b/4ba93ddb7089757f627cee922e56e1435da7566f
 S
 #src/Controller/UpdateController.php,e/7/e73c2855d3d19cf70645c5cfbb2239b6f9473731
 S
@@ -47,3 +45,11 @@ K
 public/static/css/style.css,1/f/1fd8fe3641c46422a0db8b9891aa08f45f657e5e
 S
 #src/Controller/LogoutController.php,d/7/d75fd1eb26dc87c0a96d98177a1908c6621bc429
+P
+ src/Helper/FlashMessageTrait.php,a/8/a8c9dceecfb5ba6a05631a086c8de12956a12499
+R
+"src/Controller/IndexController.php,7/6/765f07569b12c5a4d3d76ada1c37e72e73106791
+N
+src/Helper/RenderViewTrait.php,3/4/340d9ffba4c61252153506034ab2a431087355f3
+E
+view/courses/home.php,5/3/5327a5ba4043ab2eb3ce10986311582e4ad87b7a

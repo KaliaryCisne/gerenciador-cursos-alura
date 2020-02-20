@@ -7,6 +7,9 @@ namespace Alura\Cursos\Controller;
 use Alura\Cursos\Entity\Curso;
 use Alura\Cursos\Helper\RenderViewTrait;
 use Alura\Cursos\Infra\EntityManagerCreator;
+use Nyholm\Psr7\Response;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 
 /**
  * Renderiza a view de editar
@@ -28,7 +31,7 @@ class UpdateController implements InterfaceControllerRequest
         $this->repositoryCursos = $entityManager->getRepository(Curso::class);
     }
 
-    public function processRequest(): void
+    public function processRequest(ServerRequestInterface $request): ResponseInterface
     {
         $id = filter_input(
           INPUT_GET,
@@ -36,16 +39,17 @@ class UpdateController implements InterfaceControllerRequest
           FILTER_VALIDATE_INT
         );
 
+        $response = new Response(302, ['Location' => '/list-courses']);
         if(is_null($id) || $id === false) {
-            header('Location: /list-courses');
-            return;
+            return $response;
         }
 
         $curso = $this->repositoryCursos->find($id);
-        echo $this->render('courses/form.php', [
+        $html = $this->render('courses/form.php', [
             'course' => $curso,
             'title' => "Editing form {$curso->getDescricao()}",
         ]);
 
+        return new Response(200, [], $html);
     }
 }

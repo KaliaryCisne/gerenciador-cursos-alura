@@ -6,6 +6,9 @@ namespace Alura\Cursos\Controller;
 use Alura\Cursos\Entity\Usuario;
 use Alura\Cursos\Helper\FlashMessageTrait;
 use Alura\Cursos\Infra\EntityManagerCreator;
+use Nyholm\Psr7\Response;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 
 /**
  * Realizar o login caso o usuário tenha permissão para entrar no sistema
@@ -27,7 +30,7 @@ class LoginController implements InterfaceControllerRequest
         $this->userRepository = $entityManager->getRepository(Usuario::class);
     }
 
-    public function processRequest(): void
+    public function processRequest(ServerRequestInterface $request): ResponseInterface
     {
 
         $email = filter_input(
@@ -36,10 +39,10 @@ class LoginController implements InterfaceControllerRequest
             FILTER_VALIDATE_EMAIL
         );
 
+        $redirectLogin = new Response(302, ['Location' => '/login']);
         if (is_null($email) || $email === false) {
             $this->setMessage("danger", "E-mail digitado não é um e-mail válido!");
-            header('Location: /login');
-            return;
+            return $redirectLogin;
         }
 
         $password = filter_input(
@@ -54,12 +57,12 @@ class LoginController implements InterfaceControllerRequest
 
         if(is_null($usuario) || !$usuario->verifyPassword($password)) {
             $this->setMessage("danger", "E-mail ou senha inválidos!");
-            header('Location: /login');
-            return;
+            return $redirectLogin;
         }
 
         $_SESSION['logado'] = true;
         header('Location: /list-courses');
+        return new \Nyholm\Psr7\Response(302, ['Location' => '/list-courses']);
 
     }
 }

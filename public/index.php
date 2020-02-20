@@ -5,12 +5,11 @@ require __DIR__ . '/../vendor/autoload.php';
 ini_set("display_errors", true);
 
 use Alura\Cursos\Controller\InterfaceControllerRequest;
+use Nyholm\Psr7\Factory\Psr17Factory;
+use Nyholm\Psr7Server\ServerRequestCreator;
 
 $request_uri = $_SERVER['REQUEST_URI'];
 $resource = explode("?", $request_uri)[0];
-
-//$resource = $_SERVER['REDIRECT_URL'];
-//$resource = $_SERVER['PATH_INFO'];
 
 $server_name = $_SERVER['SERVER_NAME'];
 $routes = require __DIR__ . '/../config/routes.php';
@@ -21,13 +20,32 @@ if (!array_key_exists($resource, $routes)) {
 }
 
 session_start();
-
 if(!isset($_SESSION['logado']) && $resource !== '/login' && $resource !== '/logar') {
     header('Location: /login');
     exit();
 }
 
+$psr17Factory = new Psr17Factory();
+
+$creator = new ServerRequestCreator(
+    $psr17Factory, // ServerRequestFactory
+    $psr17Factory, // UriFactory
+    $psr17Factory, // UploadedFileFactory
+    $psr17Factory  // StreamFactory
+);
+
+$request = $creator->fromGlobals();
+
 $classController = $routes[$resource];
 /** @var InterfaceControllerRequest $controller*/
-$controller = (new $classController())->processRequest();
+$controller = new $classController();
+$response = $controller->processRequest($request);
+
+foreach ($response->getHeaders() as $name => $values) {
+    foreach ($values as $value) {
+        header(sprintf('%s: %s', $name, $value), false);
+    }
+}
+
+echo $response->getBody();
 

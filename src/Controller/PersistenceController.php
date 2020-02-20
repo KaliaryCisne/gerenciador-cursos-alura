@@ -5,6 +5,9 @@ namespace Alura\Cursos\Controller;
 
 
 use Alura\Cursos\{Entity\Curso, Helper\FlashMessageTrait, Helper\RenderViewTrait, Infra\EntityManagerCreator};
+use Nyholm\Psr7\Response;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 
 /**
  * Persiste um registro no banco
@@ -26,7 +29,7 @@ class PersistenceController implements InterfaceControllerRequest
             ->getEntityManager();
     }
 
-    public function processRequest(): void
+    public function processRequest(ServerRequestInterface $request): ResponseInterface
     {
         //validates the data received
         $descricao = filter_input(
@@ -57,7 +60,6 @@ class PersistenceController implements InterfaceControllerRequest
         $this->setMessage("success", $message);
         $this->entityManager->flush();
 
-
-        header('Location: /list-courses', false, 302);
+        return new Response(302, ['Location' => '/list-courses']);
     }
 }
