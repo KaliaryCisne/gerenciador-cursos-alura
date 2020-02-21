@@ -9,6 +9,7 @@ use LF\Courses\Controller\{AuthenticationControler,
     LogoutController,
     PersistenceController,
     UpdateController};
+use LF\Courses\Controller\api\CoursesApi;
 
 return [
     '/' => IndexController::class,
@@ -21,5 +22,6 @@ return [
     '/login' => AuthenticationControler::class,
     '/logar' => LoginController::class,
     '/logout' => LogoutController::class,
+    '/api/list-courses' => CoursesApi::class,
 ];
 

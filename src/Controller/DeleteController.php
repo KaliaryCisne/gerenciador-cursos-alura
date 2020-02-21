@@ -5,11 +5,9 @@ namespace LF\Courses\Controller;
 
 
 use Doctrine\ORM\EntityManagerInterface;
-use LF\Courses\Entity\Curso;
-use LF\Courses\Helper\FlashMessageTrait;
+use LF\Courses\{Entity\Curso, Helper\FlashMessageTrait};
 use Nyholm\Psr7\Response;
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Message\{ResponseInterface, ServerRequestInterface};
 use Psr\Http\Server\RequestHandlerInterface;
 
 /**
@@ -48,8 +46,6 @@ class DeleteController implements RequestHandlerInterface
         }
 
         $curso = $this->cursoRepository->find($id);
-//        var_dump($curso);
-//        die();
         $this->entityManager->remove($curso);
         $this->entityManager->flush();
         $this->setMessage("success", "Curso excluído com sucesso!");
